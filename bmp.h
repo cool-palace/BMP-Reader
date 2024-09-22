@@ -13,7 +13,7 @@ private:
 
 public:
     bool openBMP(const std::string &fileName);
-    void displayBMP() const;
+    void displayBMP(std::ostream& out = std::cout) const;
     void closeBMP();
 };
 

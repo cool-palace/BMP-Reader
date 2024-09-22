@@ -35,7 +35,7 @@ bool BMP::openBMP(const std::string &fileName) {
     return true;
 }
 
-void BMP::displayBMP() const {
+void BMP::displayBMP(std::ostream& out) const {
     // Расчёт длины строки в байтах с учётом выравнивания (значение подгоняется вверх для ближайшего кратного 4-м)
     int rowStride = ((infoHeader.biWidth * (infoHeader.biBitCount / 8) + 3) & ~3);
     for (int y = 0; y < abs(infoHeader.biHeight); ++y) {
@@ -48,14 +48,14 @@ void BMP::displayBMP() const {
 
 //                std::cout << y << ' ' << x << ' ' << (int)(blue) << ' ' << (int)(green) << ' ' << (int)(red) << std::endl;
             if (red == 255 && green == 255 && blue == 255) {
-                std::cout << " ";       // Белый цвет
+                out << " ";       // Белый цвет
             } else if (red == 0 && green == 0 && blue == 0) {
-                std::cout << "#";       // Чёрный цвет
+                out << "#";       // Чёрный цвет
             } else {
-                std::cout << "?";       // Неизвестный цвет
+                out << "?";       // Неизвестный цвет
             }
         }
-        std::cout << std::endl;
+        out << std::endl;
     }
 }
 
