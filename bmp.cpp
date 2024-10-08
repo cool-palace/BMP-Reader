@@ -13,6 +13,7 @@ bool BMP::openBMP(const std::string &fileName) {
     // Проверка на формат BMP
     if (fileHeader.bfType != 0x4D42) {  // 'BM' в ASCII
         std::cerr << "File format is not BMP." << std::endl;
+        inFile.close();
         return false;
     }
 
@@ -22,6 +23,7 @@ bool BMP::openBMP(const std::string &fileName) {
     // Проверка глубины цвета (24 или 32 бита)
     if (infoHeader.biBitCount != 24 && infoHeader.biBitCount != 32) {
         std::cerr << "Only 24-bit and 32-bit BMP files supported." << std::endl;
+        inFile.close();
         return false;
     }
 
